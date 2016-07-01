@@ -67,6 +67,7 @@ Server Protocol
 -  ``TwistedWebsocket.server.Protocol.onDisconnect()``: Callback when the client is disconnected
 -  ``TwistedWebsocket.server.Protocol.onMessage(msg)``: Callback when the client receive a message
 -  ``TwistedWebsocket.server.Protocol.sendMessage(msg)``: Send a message to the client
+-  ``TwistedWebsocket.server.Protocol.sendData(data)``: Send binary data to the client
 -  ``TwistedWebsocket.server.Protocol.users``: Dictionnary ( self == self.clients[self.id] ) off all the clients connected to the server
 -  ``TwistedWebsocket.server.Protocol.id``: Client UUID4 id
 

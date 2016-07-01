@@ -99,13 +99,15 @@ class Frame(object):
     return encoded_msg
 
   @staticmethod
-  def buildMessage(buf, mask=True):
+  def buildMessage(buf, mask=True, binary=False, **kwords):
+    if binary:
+      assert(not mask)
     c_buf = buf
     msg = ""
     if mask:
       key = "".join([str(chr(random.randrange(1,255))) for i in xrange(4)])
     #first byte
-    o = (1 << 7) + 1
+    o = (1 << 7) + (2 if binary else 1)
     msg += str(chr(o))
     #second byte
     buf_len = len(buf)

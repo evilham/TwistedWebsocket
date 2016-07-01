@@ -101,12 +101,15 @@ class Protocol(BaseProtocol, object):
     self.onDisconnect()
     self.transport.abortConnection()
 
-  def sendMessage(self, msg):
-    self.bufferOut += Frame.buildMessage(msg, mask=False)
+  def sendMessage(self, msg, **kwords):
+    self.bufferOut += Frame.buildMessage(msg, mask=False, **kwords)
     if not self.websocket_ready:
       return
     self.transport.write(self.bufferOut)
     self.bufferOut = ""
+
+  def sendData(self, msg, **kwords):
+    self.sendMessage(msg, mask=False, binary=True, **kwords)
 
   def onHandshake(self, header):
     pass
